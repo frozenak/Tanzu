@@ -1,0 +1,17 @@
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TanzuKubernetesCluster
+metadata:
+  name: test-cluster01 #name to give TKG cluster
+  namespace: test-ns #namespace name for location of TKG cluster
+spec:
+  distribution:
+    version: v1.20.9 #Kubernetes version for TKG cluster nodes
+  topology:
+    controlPlane:
+      count: 1                                 #1 control plane nodes
+      class: best-effort-small                  # Best effort extra small class
+      storageClass: tanzu-storage-basic  #Specific storage class for control plane
+    workers:
+      count: 2                                 #1 worker nodes
+      class: best-effort-small                 # Best effort extra small class
+      storageClass: tanzu-storage-basic   #Specific storage class for workers
